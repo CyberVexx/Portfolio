@@ -15,7 +15,7 @@
 
         <div class="container">
             <div id="profile" class="box cyber-tile">
-                <!-- <img src="src/images/cman.jpg" alt=""> -->
+                <img class="pfp" src="src/images/cman.jpg" alt="">
                 <h1 class="cyberpunk glitched">Arne Soyez</h1>
             </div>
             <div id="description-text" class="box cyber-tile">Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus est mollitia impedit quia sint? Qui delectus, nisi eaque illum voluptas dicta corrupti voluptatem alias voluptatibus, hic quaerat blanditiis fuga veniam?</div>
