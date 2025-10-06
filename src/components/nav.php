@@ -4,10 +4,11 @@
 ?>
 
 <nav class="navbar">
+  <img class="logo" src="../images/cman.jpg" alt="logo">
   <div class="links">
     <a href="index.php" class="<?= ($current_page == 'index.php') ? 'active' : '' ?>">Home</a>
-    <a href="contact.php" class="<?= ($current_page == 'contact.php') ? 'active' : '' ?>">Contact</a>
     <a href="#" class="<?= ($current_page == 'portfolio.php') ? 'active' : '' ?>">Portfolio</a>
     <a href="#" class="<?= ($current_page == 'projects.php') ? 'active' : '' ?>">Projects</a>
+    <a href="contact.php" class="<?= ($current_page == 'contact.php') ? 'active' : '' ?>">Contact</a>
   </div>
 </nav>

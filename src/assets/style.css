@@ -796,3 +796,7 @@ h4.cyberpunk:after,
     height: 200px;     /* force same height */
   }
 }
+
+.container > .pfp {
+    width: 20px;
+}
