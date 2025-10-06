@@ -4,7 +4,7 @@
 ?>
 
 <nav class="navbar">
-  <img class="logo" src="../images/cman.jpg" alt="logo">
+  <img class="logo" src="../images/logo.png" alt="logo">
   <div class="links">
     <a href="index.php" class="<?= ($current_page == 'index.php') ? 'active' : '' ?>">Home</a>
     <a href="#" class="<?= ($current_page == 'portfolio.php') ? 'active' : '' ?>">Portfolio</a>
