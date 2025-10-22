@@ -1,0 +1,485 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Exo+2:wght@400..900&display=swap");
+
+:root {
+    --font-primary: 'Orbitron', monospace;
+    --font-secondary: 'Exo 2', sans-serif;
+    --font-color: #e0e0ff;
+
+    --primary-neon: #00ffff;
+    --secondary-neon: #ff00ff;
+    --accent-neon: #ffff00;
+    --dark-purple: #1a0033;
+    --dark-blue: #0a0a2a;
+    --midnight: #00001a;
+    --electric-blue: #0066ff;
+    --hot-pink: #ff0080;
+    --warning-yellow: #ffcc00;
+
+    --glitched-duration: 0.9s;
+    --glitched-long-duration: 3s;
+    --scanline-opacity: 0.3;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* webkits */
+
+::selection {
+    color: var(--accent-neon);
+}
+
+
+/* body */
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+    font-family: var(--font-secondary);
+    background-color: var(--midnight);
+    color: var(--font-color);
+    line-height: 1.7;
+    overflow-x: hidden;
+    position: relative;
+    background-image: url(../images/bg.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    cursor: url('src/images/cursor.webp'), auto;
+}
+
+.footer {
+    background: transparent;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: auto;
+}
+
+
+
+/* navbar */
+/* ─── NAVBAR ─────────────────────────────── */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    padding-inline: 5%;
+    border-bottom: 2px solid var(--primary-neon);
+    background: rgba(10, 10, 40, 0.7);
+}
+
+/* Logo */
+.navbar .logo {
+    font-family: var(--font-primary);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-neon);
+    text-decoration: none;
+    text-shadow: 0 0 10px var(--primary-neon);
+    transition: text-shadow 0.3s ease;
+}
+
+.logo:hover {
+    animation: neonPulse 3s infinite;
+}
+
+/* Neon pulse animation */
+@keyframes neonPulse {
+    0%, 100% {
+        text-shadow: 0 0 10px var(--primary-neon), 0 0 20px var(--primary-neon);
+    }
+    50% {
+        text-shadow: 0 0 20px var(--primary-neon), 0 0 40px var(--primary-neon), 0 0 60px var(--primary-neon);
+    }
+}
+
+/* Links container */
+.links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* Default link styles (excluding buttons) */
+.links a:not(.contact-btn) {
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+    font-family: var(--font-primary);
+    color: var(--font-color);
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 8px 15px;
+    transition: all 0.3s ease;
+    border: 1px solid transparent; /* won't affect the contact button */
+}
+
+/* Hover underline animation */
+.links a:not(.contact-btn)::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0;
+    height: 2px;
+    background-color: var(--secondary-neon);
+    transition: width 0.7s ease;
+}
+
+.links a:not(.contact-btn):hover {
+    color: var(--primary-neon);
+    border: 1px solid var(--primary-neon);
+}
+
+.links a:not(.contact-btn):hover::after,
+.links a.active::after {
+    width: 100%;
+}
+
+/* ─── CONTACT BUTTON ─────────────────────── */
+
+.contact-btn {
+    border: 1px solid var(--primary-neon);
+    background: rgba(0, 255, 255, 0.1);
+    color: var(--primary-neon);
+    font-family: var(--font-primary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 8px 18px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px var(--primary-neon);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.contact-btn:hover {
+    background: var(--primary-neon);
+    color: var(--dark-blue);
+    box-shadow: 0 0 15px var(--primary-neon), 0 0 25px var(--primary-neon);
+}
+
+
+/* index page */
+.main-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    padding: 1rem;
+    max-width: 70%;
+}
+
+.box {
+    flex: 1;
+    padding: 1.5rem;
+    border: 1px solid var(--primary-neon);
+    border-radius: 10px;
+    background: rgba(10, 10, 40, 0.7); /* Slight dark transparency for glow contrast */
+    box-shadow: 0 0 10px var(--primary-neon);
+}
+
+#profile {
+    flex: 0 0 250px; /* Fixed width for profile box */
+    text-align: center;
+}
+
+#profile img {
+    width: 150px;       /* Adjust as needed */
+    height: 150px;      /* Keeps proportions square */
+    /* border-radius: %; Optional: makes it circular */
+    object-fit: cover;  /* Prevents stretching */
+}
+
+.profile-name {
+    /* display: flex; */
+    flex-direction: row;
+}
+
+#description-text {
+    flex: 1;
+}
+
+/* ─── CONTACT SECTION ─────────────────────── */
+.contact-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    padding: 3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ─── SCANLINE OVERLAY ───────────────────── */
+.scanline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(0, 255, 255, 0.05) 0px,
+        rgba(0, 255, 255, 0.05) 1px,
+        transparent 2px,
+        transparent 4px
+    );
+    animation: scanMove 6s linear infinite;
+    opacity: 0.2;
+    z-index: 1;
+}
+
+@keyframes scanMove {
+    from { background-position: 0 0; }
+    to { background-position: 0 100%; }
+}
+
+/* ─── CONTAINER ───────────────────────────── */
+.contact-container {
+    width: 100%;
+    max-width: 600px;
+    background: rgba(10, 10, 40, 0.85);
+    padding: 2.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--primary-neon);
+    box-shadow: 0 0 20px var(--primary-neon);
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* ─── HEADERS ───────────────────────────── */
+.contact-title {
+    font-family: var(--font-primary);
+    color: var(--primary-neon);
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px var(--primary-neon);
+}
+
+.contact-subtitle {
+    font-family: var(--font-secondary);
+    color: var(--font-color);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    opacity: 0.8;
+}
+
+/* ─── FORM ───────────────────────────── */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: relative;
+}
+
+.form-group {
+    text-align: left;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    font-family: var(--font-primary);
+    font-size: 0.9rem;
+    color: var(--accent-neon);
+    margin-bottom: 0.4rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Input styling */
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: rgba(0, 0, 40, 0.85);
+    border: 1px solid var(--primary-neon);
+    border-radius: 6px;
+    color: var(--font-color);
+    font-family: var(--font-secondary);
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
+
+/* ─── NEON FRAME FOCUS EFFECT ─────────────── */
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--secondary-neon);
+    box-shadow: 0 0 15px var(--secondary-neon),
+                0 0 25px var(--secondary-neon),
+                inset 0 0 10px var(--primary-neon);
+    animation: neonPulse 2s infinite;
+}
+
+@keyframes neonPulse {
+    0%, 100% {
+        box-shadow: 0 0 15px var(--secondary-neon),
+                    0 0 25px var(--secondary-neon),
+                    inset 0 0 10px var(--primary-neon);
+    }
+    50% {
+        box-shadow: 0 0 25px var(--primary-neon),
+                    0 0 40px var(--secondary-neon),
+                    inset 0 0 20px var(--secondary-neon);
+    }
+}
+
+/* ─── SEND BUTTON ─────────────────────────── */
+.send-btn {
+    background: transparent;
+    border: 1px solid var(--primary-neon);
+    color: var(--primary-neon);
+    font-family: var(--font-primary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 0.9rem 2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px var(--primary-neon);
+}
+
+.send-btn:hover {
+    background: var(--primary-neon);
+    color: var(--dark-blue);
+    box-shadow: 0 0 15px var(--primary-neon), 0 0 25px var(--primary-neon);
+    transform: translateY(-2px);
+}
+
+/* ─── SUCCESS POPUP ───────────────────────── */
+.success-popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 20, 0.9);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    backdrop-filter: blur(5px);
+}
+
+.success-popup.active {
+    display: flex;
+}
+
+.popup-content {
+    background: rgba(10, 10, 40, 0.85);
+    border: 1px solid var(--primary-neon);
+    box-shadow: 0 0 20px var(--primary-neon);
+    border-radius: 10px;
+    padding: 2rem 3rem;
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+}
+
+.popup-content h2 {
+    font-family: var(--font-primary);
+    color: var(--primary-neon);
+    text-shadow: 0 0 10px var(--primary-neon);
+    margin-bottom: 1rem;
+}
+
+.popup-content p {
+    color: var(--font-color);
+    font-family: var(--font-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.popup-content button {
+    background: transparent;
+    border: 1px solid var(--primary-neon);
+    color: var(--primary-neon);
+    font-family: var(--font-primary);
+    text-transform: uppercase;
+    padding: 0.6rem 1.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.popup-content button:hover {
+    background: var(--primary-neon);
+    color: var(--dark-blue);
+    box-shadow: 0 0 15px var(--primary-neon);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* ─── RESPONSIVE ───────────────────────────── */
+@media (max-width: 600px) {
+    .contact-container {
+        padding: 1.5rem;
+        max-width: 90%;
+    }
+
+    .contact-title {
+        font-size: 1.8rem;
+    }
+
+    .popup-content {
+        padding: 1.5rem;
+    }
+}
+
+
+.btn {
+    display: inline-block;
+    padding: 15px 40px;
+    background: transparent;
+    color: var(--primary-neon);
+    text-decoration: none;
+    font-family: var(--font-primary);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    border: 2px solid var(--primary-neon);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+    text-shadow: 0 0 5px var(--primary-neon);
+}
+.btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 255, 255, 0.2);
+    transition: all 0.5s ease;
+}
+.btn:hover::before { left: 100%;
+.btn:hover {
+    background: rgba(0, 255, 255, 0.1);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+    transform: translateY(-5px);
+    text-shadow: 0 0 10px var(--primary-neon);
+}}
