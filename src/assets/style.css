@@ -1,802 +1,485 @@
-@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Exo+2:wght@400..900&display=swap");
 
 :root {
-    --main-font: Orbitron, sans-serif;
-    --bg-color: #2f404d;
-    --accent-color: #3d898d;
-    --accent2-color: #85ebd9;
-    --border-color: #e2dddf;
-    --main-font-color: #b0acb0;
-    --ube-color: #8387c3;
+    --font-primary: 'Orbitron', monospace;
+    --font-secondary: 'Exo 2', sans-serif;
+    --font-color: #e0e0ff;
+
+    --primary-neon: #00ffff;
+    --secondary-neon: #ff00ff;
+    --accent-neon: #ffff00;
+    --dark-purple: #1a0033;
+    --dark-blue: #0a0a2a;
+    --midnight: #00001a;
+    --electric-blue: #0066ff;
+    --hot-pink: #ff0080;
+    --warning-yellow: #ffcc00;
 
     --glitched-duration: 0.9s;
     --glitched-long-duration: 3s;
-    --x2: #f9f002;
-    --yellow-color-opacity: #f9f00242;
-    --orange-color: #ff9800;
-    --border-color: #8ae66e;
-    --red-color: #ff003c;
-    --blue-color: #0c5f74;
-    --green-color: #298d29;
-    --purple-color2: purple;
-    --neon-color: #39ff14;
-    --black-color: #000;
-    --offwhite: #fafafa;
-    --p1: #2d3342;
-    --p2: #565c6d;
-    --p3: #040c1b;
-    --red-color: #e6005c;
-    --red-color: #c5003c;
-    --green-color: #41bf50;
-    --green-color2: #8bcc3b;
-    --purple-color: #440087;
-    --yellow-color: #ffe009;
-    --orange: #f59740;
-    --lighblue: #69f8ff;
-    --black-color: #050a0e;
-    --blue-color: #0040b0;
-    --darkblue: #1f0f57;
+    --scanline-opacity: 0.3;
 }
 
-html, body {
+* {
     margin: 0;
-}
-
-body {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background-color: var(--bg-color);
     padding: 0;
-    font-size: 20px;
-    font-family: var(--main-font);
+    box-sizing: border-box;
 }
 
-/* Scrollbar */
 
-::-webkit-scrollbar {
-    background-color: var(--yellow-color);
-}
-
-::-webkit-scrollbar-button {
-    display: none;
-}
-
-::-webkit-scrollbar-track {
-    display: none;
-}
-
-::-webkit-scrollbar-track-piece {
-    display: none;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: var(--red-color);
-    border-bottom: 2px solid var(--border-color);
-    border-right: 2px solid var(--border-color);
-    transition: background var(--glitched-duration);
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background-color: var(--orange-color);
-}
-
-::-webkit-scrollbar-corner {
-    display: none;
-}
-
-::-webkit-resizer {
-    display: none;
-}
+/* webkits */
 
 ::selection {
-  color: var(--accent2-color);
+    color: var(--accent-neon);
 }
+
+
+/* body */
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+    font-family: var(--font-secondary);
+    background-color: var(--midnight);
+    color: var(--font-color);
+    line-height: 1.7;
+    overflow-x: hidden;
+    position: relative;
+    background-image: url(../images/bg.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    cursor: url('src/images/cursor.webp'), auto;
+}
+
+.footer {
+    background: transparent;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: auto;
+}
+
 
 
 /* navbar */
+/* ─── NAVBAR ─────────────────────────────── */
 
 .navbar {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    height: auto;
-    font-size: large;
-    text-decoration: none;
+    align-items: center;
+    height: 80px;
+    padding-inline: 5%;
+    border-bottom: 2px solid var(--primary-neon);
+    background: rgba(10, 10, 40, 0.7);
 }
 
-.navbar a {
-    color: var(--main-font-color);
+/* Logo */
+.navbar .logo {
+    font-family: var(--font-primary);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-neon);
+    text-decoration: none;
+    text-shadow: 0 0 10px var(--primary-neon);
+    transition: text-shadow 0.3s ease;
+}
+
+.logo:hover {
+    animation: neonPulse 3s infinite;
+}
+
+/* Neon pulse animation */
+@keyframes neonPulse {
+    0%, 100% {
+        text-shadow: 0 0 10px var(--primary-neon), 0 0 20px var(--primary-neon);
+    }
+    50% {
+        text-shadow: 0 0 20px var(--primary-neon), 0 0 40px var(--primary-neon), 0 0 60px var(--primary-neon);
+    }
+}
+
+/* Links container */
+.links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* Default link styles (excluding buttons) */
+.links a:not(.contact-btn) {
+    display: inline-block;
     position: relative;
     text-decoration: none;
-    padding: 5px 0;
+    font-family: var(--font-primary);
+    color: var(--font-color);
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 8px 15px;
+    transition: all 0.3s ease;
+    border: 1px solid transparent; /* won't affect the contact button */
 }
 
-.navbar a::after {
+/* Hover underline animation */
+.links a:not(.contact-btn)::after {
     content: "";
     position: absolute;
     left: 0;
-    bottom: -2px;
+    bottom: -6px;
     width: 0;
     height: 2px;
-    background: var(--accent-color);
-    transition: width 0.5s ease;
+    background-color: var(--secondary-neon);
+    transition: width 0.7s ease;
 }
 
-.navbar a.active::after,
-.navbar a:hover::after {
+.links a:not(.contact-btn):hover {
+    color: var(--primary-neon);
+    border: 1px solid var(--primary-neon);
+}
+
+.links a:not(.contact-btn):hover::after,
+.links a.active::after {
     width: 100%;
 }
 
-.navbar a:hover::after :active {
-    width: 100%;
+/* ─── CONTACT BUTTON ─────────────────────── */
+
+.contact-btn {
+    border: 1px solid var(--primary-neon);
+    background: rgba(0, 255, 255, 0.1);
+    color: var(--primary-neon);
+    font-family: var(--font-primary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 8px 18px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px var(--primary-neon);
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
-.links {
-    margin-left: auto;
-    padding: 15px 20px;
-    display: flex;
-    gap: 2rem;
-    background-color: transparent;
+.contact-btn:hover {
+    background: var(--primary-neon);
+    color: var(--dark-blue);
+    box-shadow: 0 0 15px var(--primary-neon), 0 0 25px var(--primary-neon);
 }
 
 
-/* footer */
-
-.footer {
-    background-color: transparent;
-    color: white;
-    text-align: center;
-}
-
-main {
+/* index page */
+.main-content {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-
-/* Button */
-
-button.cyberpunk,
-input[type=submit].cyberpunk,
-a.cyberpunk {
-    --text: "R-25";
-    --background-color: var(--red-color);
-    display: block;
-    border: none;
-    border-radius: 0%;
-    font-size: 1.5rem;
-    line-height: 1.5rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-weight: 600;
-    padding: 35px 75px;
-    margin: 10px 20px 10px 0px;
-    position: relative;
-    color: #fff;
-    border-right: 3px solid var(--border-color);
-    clip-path: polygon(-15px 0%,
-            calc(100% + 15px) 0%,
-            calc(100% + 15px) 100%,
-            20px 100%,
-            -15px calc(100% - 35px));
-    cursor: pointer;
-    background-color: var(--background-color);
-    outline: none;
-    display: inline-block;
-}
-
-button.cyberpunk,
-input[type=submit].cyberpunk,
-a.cyberpunk {
-    --text: "R-25";
-    --background-color: var(--red-color);
-    display: block;
-    border: none;
-    border-radius: 0%;
-    font-size: 1.5rem;
-    line-height: 1.5rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-weight: 600;
-    padding: 35px 75px;
-    margin: 10px 20px 10px 0px;
-    position: relative;
-    color: #fff;
-    border-right: 3px solid var(--border-color);
-    clip-path: polygon(-15px 0%,
-            calc(100% + 15px) 0%,
-            calc(100% + 15px) 100%,
-            20px 100%,
-            -15px calc(100% - 35px));
-    cursor: pointer;
-    background-color: var(--background-color);
-    outline: none;
-    display: inline-block;
-}
-
-button.cyberpunk:hover,
-a.cyberpunk:hover,
-input[type=submit].cyberpunk:hover,
-button.cyberpunk:focus,
-a.cyberpunk:focus,
-input[type=submit].cyberpunk:focus {
-    animation-name: buttonhover;
-    animation-duration: var(--glitched-duration);
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-}
-
-button.cyberpunk.blue,
-input[type=submit].cyberpunk.blue,
-a.cyberpunk.blue {
-    --background-color: var(--purple-color);
-}
-
-button.cyberpunk:after,
-input[type=submit].cyberpunk:after,
-a.cyberpunk:after {
-    content: var(--text);
-    display: block;
-    position: absolute;
-    bottom: 0px;
-    right: 25px;
-    padding: 2px 2px 0px 2px;
-    font-size: 0.6rem;
-    line-height: 0.6rem;
-    color: var(--black-color);
-    background-color: var(--yellow-color);
-    border-left: 2px solid var(--border-color);
-}
-
-button.cyberpunk:hover:after,
-a.cyberpunk:hover:after,
-input[type=submit].cyberpunk:after,
-button.cyberpunk:focus:after,
-a.cyberpunk:focus:after,
-input[type=submit].cyberpunk:after {
-    animation-name: buttonhoverafter;
-    animation-duration: var(--glitched-duration);
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-}
-
-button.cyberpunk:before,
-a.cyberpunk:before,
-input[type=submit].cyberpunk:before {
-    --outside: 4px;
-    content: "";
-    position: absolute;
-    display: none;
-    background-color: var(--background-color);
-    width: calc(100% + (var(--outside) * 2));
-    height: 12px;
-    top: 0px;
-    left: calc(0px - 1px - var(--outside));
-    border-left: 2px solid var(--border-color);
-    border-right: 2px solid var(--border-color);
-}
-
-button.cyberpunk:hover:before,
-a.cyberpunk:hover:before,
-input[type=submit].cyberpunk:hover:before,
-button.cyberpunk:focus:before,
-a.cyberpunk:focus:before,
-input[type=submit].cyberpunk:focus:before {
-    display: block;
-    animation-name: buttonhoverbefore;
-    animation-duration: var(--glitched-duration);
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-}
-
-@keyframes buttonhover {
-    0% {
-        transform: skew(0deg);
-    }
-
-    60% {
-        transform: skew(0deg);
-    }
-
-    61% {
-        transform: skew(10deg);
-    }
-
-    70% {
-        transform: skew(10deg);
-    }
-
-    71% {
-        transform: skew(0deg);
-    }
-
-    100% {
-        transform: skew(0deg);
-    }
-}
-
-@keyframes buttonhoverbefore {
-    0% {
-        display: none;
-        top: 0px;
-    }
-
-    10% {
-        display: none;
-        top: 0px;
-    }
-
-    11% {
-        display: block;
-        top: 10px;
-        left: calc(0px - 0px - var(--outside));
-    }
-
-    29% {
-        top: 10px;
-    }
-
-    30% {
-        display: none;
-        top: 0px;
-    }
-
-    50% {
-        display: none;
-        top: 0px;
-    }
-
-    51% {
-        display: block;
-        top: 55px;
-        filter: blur(1px);
-        height: 22px;
-    }
-
-    90% {
-        display: block;
-        top: 55px;
-        height: 22px;
-    }
-
-    91% {
-        filter: blur(0px);
-        display: none;
-        top: 0px;
-        height: 12px;
-    }
-
-    100% {
-        display: none;
-        top: 0px;
-    }
-}
-
-@keyframes buttonhoverafter {
-    0% {
-        right: 45px;
-    }
-
-    10% {
-        right: 45px;
-    }
-
-    11% {
-        right: 35px;
-    }
-
-    20% {
-        transform: skew(0deg);
-    }
-
-    21% {
-        transform: skew(-10deg);
-    }
-
-    40% {
-        transform: skew(-10deg);
-    }
-
-    41% {
-        transform: skew(0deg);
-    }
-
-    49% {
-        right: 35px;
-    }
-
-    50% {
-        right: 55px;
-    }
-
-    60% {
-        right: 55px;
-    }
-
-    61% {
-        right: 35px;
-    }
-
-    70% {
-        transform: skew(0deg);
-    }
-
-    71% {
-        transform: skew(10deg);
-    }
-
-    80% {
-        transform: skew(10deg);
-    }
-
-    81% {
-        transform: skew(0deg);
-    }
-
-    100% {
-        right: 35px;
-    }
-}
-
-
-/* Form fields */
-
-input[type="text"].cyberpunk,
-input[type="date"].cyberpunk,
-/* input[type="time"].cyberpunk,
-input[type="file"].cyberpunk,
-input[type="number"].cyberpunk,
-input[type="phone"].cyberpunk,
-input[type="password"].cyberpunk, */
-textarea.cyberpunk,
-select.cyberpunk,
-.cyberpunk input[type="text"],
-.cyberpunk input[type="date"],
-/* .cyberpunk input[type="time"],
-.cyberpunk input[type="file"],
-.cyberpunk input[type="number"],
-.cyberpunk input[type="phone"],
-.cyberpunk input[type="password"], */
-.cyberpunk textarea,
-.cyberpunk select {
-    width: calc(100% - 30px);
-    border: 30px solid var(--black-color);
-    border-left: 5px solid var(--black-color);
-    border-right: 5px solid var(--black-color);
-    border-bottom: 15px solid var(--black-color);
-    clip-path: polygon(0px 25px, 26px 0px, calc(60% - 25px) 0px, 60% 25px, 100% 25px, 100% calc(100% - 10px), calc(100% - 15px) calc(100% - 10px), calc(80% - 10px) calc(100% - 10px), calc(80% - 15px) calc(100% - 0px), 10px calc(100% - 0px), 0% calc(100% - 10px));
-    margin-bottom: 10px;
-    padding: 12px;
-    font-size: 1.7rem;
-    font-weight: 700;
-}
-
-input[type="password"].cyberpunk,
-.cyberpunk input[type="password"] {
-    font-family: 'Hacked';
-    font-style: normal;
-    font-weight: 400;
-    font-variant: normal;
-    text-transform: none;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    letter-spacing: 2px;
-}
-
-
-/* Titles */
-
-h1.cyberpunk,
-h2.cyberpunk,
-h3.cyberpunk,
-h4.cyberpunk,
-.cyberpunk h1,
-.cyberpunk h2,
-.cyberpunk h3,
-.cyberpunk h4 {
-    font-size: 2rem;
-    line-height: 2.2rem;
-    font-weight: 200;
-    position: relative;
-    padding-bottom: 15px;
-}
-
-h2.cyberpunk,
-.cyberpunk h2 {
-    font-size: 1.7rem;
-    line-height: 1.9rem;
-    font-weight: 300;
-}
-
-h3.cyberpunk,
-.cyberpunk h3 {
-    font-size: 1.4rem;
-    line-height: 1.6rem;
-    font-weight: 500;
-}
-
-h4.cyberpunk,
-.cyberpunk h4 {
-    font-size: 1rem;
-    line-height: 1.2rem;
-    font-weight: 700;
-}
-
-/* h1.cyberpunk:before, */
-h2.cyberpunk:before,
-h3.cyberpunk:before,
-h4.cyberpunk:before,
-.cyberpunk h1:before,
-.cyberpunk h2:before,
-.cyberpunk h3:before,
-.cyberpunk h4:before {
-    content: "";
-    display: block;
-    position: absolute;
-    bottom: 0px;
-    left: 2px;
-    width: 100%;
-    height: 10px;
-    background-color: var(--black-color);
-    clip-path: polygon(0px 0px, 85px 0px, 90px 5px, 100% 5px, 100% 6px, 85px 6px, 80px 10px, 0px 10px);
-}
-
-h1.cyberpunk.glitched,
-.cyberpunk h1.glitched {
-    animation-name: h1glitched;
-    animation-duration: calc(var(--glitched-duration) * 1.4);
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-}
-
-h2.cyberpunk.glitched,
-.cyberpunk h2.glitched {
-    animation-name: h1glitched;
-    animation-duration: calc(var(--glitched-duration) * 1.7);
-    animation-iteration-count: infinite;
-    animation-direction: reverse;
-    animation-timing-function: linear;
-}
-
-h3.cyberpunk.glitched,
-.cyberpunk h3.glitched {
-    animation-name: h1glitched;
-    animation-duration: calc(var(--glitched-duration) * 1.1);
-    animation-iteration-count: infinite;
-    animation-direction: reverse;
-    animation-timing-function: ease-out;
-}
-
-h4.cyberpunk.glitched,
-.cyberpunk h4.glitched {
-    animation-name: h1glitched;
-    animation-duration: calc(var(--glitched-duration) * 2.1);
-    animation-iteration-count: infinite;
-    animation-timing-function: ease-in-out;
-}
-
-@keyframes h1glitched {
-    0% {
-        transform: skew(-20deg);
-        left: -4px;
-    }
-
-    10% {
-        transform: skew(-20deg);
-        left: -4px;
-    }
-
-    11% {
-        transform: skew(0deg);
-        left: 2px;
-    }
-
-    50% {
-        transform: skew(0deg);
-    }
-
-    51% {
-        transform: skew(10deg);
-    }
-
-    59% {
-        transform: skew(10deg);
-    }
-
-    60% {
-        transform: skew(0deg);
-    }
-
-    100% {
-        transform: skew(0deg);
-    }
-}
-
-/* h1.cyberpunk.glitched:before,
-.cyberpunk h1.glitched:before {
-  animation-name: h1beforeglitched;
-  animation-duration: calc(var(--glitched-duration) * 2);
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-} */
-
-/* @keyframes h1beforeglitched {
-  0% {
-    transform: skew(-20deg);
-    left: -4px;
-    clip-path: polygon(0px 0px, 85px 0px, 90px 5px, 100% 5px, 100% 6px, 85px 6px, 80px 10px, 0px 10px);
-  }
-  10% {
-    transform: skew(-20deg);
-    left: -4px;
-    clip-path: polygon(0px 0px, 85px 0px, 90px 5px, 100% 5px, 100% 6px, 85px 6px, 80px 10px, 0px 10px);
-  }
-  11% {
-    transform: skew(0deg);
-    left: 2px;
-    clip-path: polygon(0px 0px, 85px 0px, 90px 5px, 100% 5px, 100% 6px, 85px 6px, 80px 10px, 0px 10px);
-  }
-  50% {
-    transform: skew(0deg);
-    clip-path: polygon(0px 0px, 85px 0px, 90px 5px, 100% 5px, 100% 6px, 85px 6px, 80px 10px, 0px 10px);
-  }
-  51% {
-    transform: skew(0deg);
-    clip-path: polygon(0px 0px, 85px 0px, 90px 5px, 100% 5px, 40% 5px, calc(40% - 30px) 0px, calc(40% + 30px) 0px, calc(45% - 15px) 5px, 100% 5px, 100% 6px, calc(45% - 14px) 6px, calc(40% + 29px) 1px, calc(40% - 29px) 1px, calc(40% + 1px) 6px, 85px 6px, 80px 10px, 0px 10px);
-  }
-  59% {
-    transform: skew(0deg);
-    clip-path: polygon(0px 0px, 85px 0px, 90px 5px, 100% 5px, 40% 5px, calc(40% - 30px) 0px, calc(40% + 30px) 0px, calc(45% - 15px) 5px, 100% 5px, 100% 6px, calc(45% - 14px) 6px, calc(40% + 29px) 1px, calc(40% - 29px) 1px, calc(40% + 1px) 6px, 85px 6px, 80px 10px, 0px 10px);
-  }
-  60% {
-    transform: skew(0deg);
-    clip-path: polygon(0px 0px, 85px 0px, 90px 5px, 100% 5px, 100% 6px, 85px 6px, 80px 10px, 0px 10px);
-  }
-  100% {
-    transform: skew(0deg);
-    clip-path: polygon(0px 0px, 85px 0px, 90px 5px, 100% 5px, 100% 6px, 85px 6px, 80px 10px, 0px 10px);
-  }
-} */
-
-h2.cyberpunk:before,
-.cyberpunk h2:before {
-    clip-path: polygon(0px 5px, 35px 5px, 40px 0px, 85px 0px, 90px 5px, 100% 5px, 100% 6px, 85px 6px, 80px 10px, 20px 10px, 15px 6px, 0px 6px);
-}
-
-h2.cyberpunk.glitched:before,
-.cyberpunk h2.glitched:before {
-    animation-name: h2beforeglitched;
-    animation-duration: calc(var(--glitched-duration) * 2);
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-}
-
-@keyframes h2beforeglitched {
-    0% {
-        transform: scaleY(1);
-    }
-
-    10% {
-        transform: scaleY(1);
-    }
-
-    11% {
-        transform: scaleY(-1);
-    }
-
-    50% {
-        transform: scaleY(-1);
-    }
-
-    51% {
-        transform: scaleY(1);
-    }
-
-    59% {
-        transform: scaleY(1);
-    }
-
-    60% {
-        transform: scaleY(1);
-    }
-
-    100% {
-        transform: scaleY(1);
-    }
-}
-
-h3.cyberpunk:before,
-.cyberpunk h3:before {
-    clip-path: polygon(0px 5px, 10px 5px, 15px 0px, 40px 0px, 45px 5px, 100% 5px, 100% 6px, 31px 6px, 27px 2px, 15px 2px, 8px 10px, 0px 10px);
-}
-
-h4.cyberpunk:before,
-.cyberpunk h4:before {
-    clip-path: polygon(0px 3px, 15px 3px, 20px 0px, 80px 0px, 85px 3px, 100% 3px, 100% 4px, 85px 4px, 80px 7px, 20px 7px, 15px 4px, 0px 4px);
-}
-
-h1.cyberpunk:after,
-h2.cyberpunk:after,
-h3.cyberpunk:after,
-h4.cyberpunk:after,
-p.cyberpunk:after,
-.cyberpunk h1:after,
-.cyberpunk h2:after,
-.cyberpunk h3:after,
-.cyberpunk h4:after,
-.cyberpunk p:after {
-    content: "_";
-    animation-name: hxafter;
-    animation-duration: var(--glitched-duration);
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-}
-
-h3.cyberpunk:after,
-h4.cyberpunk:after,
-.cyberpunk h3:after,
-.cyberpunk h4:after {
-    animation-direction: reverse;
-    animation-duration: calc(var(--glitched-duration) / 2);
-}
-
-
-/* Base cyber-tile style */
-.cyber-tile {
-    position: relative;
-    padding: 1rem 1rem;
-    background-color: var(--accent-color);
-    color: var(--main-font-color);
-    font-size: 1rem;
-    clip-path: polygon(0 0,         /* top-left (normal corner) */
-            calc(100% - 20px) 0,    /* move left before top-right cut */
-            100% 20px,              /* cut top-right */
-            100% 100%,              /* bottom-right (normal) */
-            20px 100%,              /* move right before bottom-left cut */
-            0 calc(100% - 20px)     /* cut bottom-left */
-        );
-}
-
 .container {
     display: flex;
     justify-content: center;
-    align-items: center;
     gap: 3rem;
-    margin-top: 2.5rem;
-    padding-inline: 5rem;
-}
-
-.box {
-    height: 150px;
-}
-
-#profile {
-    width: 30%;
-    margin-inline: 1rem;
-}
-
-#description-text {
+    padding: 1rem;
     max-width: 70%;
 }
 
-/* Stack boxes on mobile */
-@media (max-width: 600px) {
-  .container {
+.box {
+    flex: 1;
+    padding: 1.5rem;
+    border: 1px solid var(--primary-neon);
+    border-radius: 10px;
+    background: rgba(10, 10, 40, 0.7); /* Slight dark transparency for glow contrast */
+    box-shadow: 0 0 10px var(--primary-neon);
+}
+
+#profile {
+    flex: 0 0 250px; /* Fixed width for profile box */
+    text-align: center;
+}
+
+#profile img {
+    width: 150px;       /* Adjust as needed */
+    height: 150px;      /* Keeps proportions square */
+    /* border-radius: %; Optional: makes it circular */
+    object-fit: cover;  /* Prevents stretching */
+}
+
+.profile-name {
+    /* display: flex; */
+    flex-direction: row;
+}
+
+#description-text {
+    flex: 1;
+}
+
+/* ─── CONTACT SECTION ─────────────────────── */
+.contact-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    padding: 3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ─── SCANLINE OVERLAY ───────────────────── */
+.scanline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(0, 255, 255, 0.05) 0px,
+        rgba(0, 255, 255, 0.05) 1px,
+        transparent 2px,
+        transparent 4px
+    );
+    animation: scanMove 6s linear infinite;
+    opacity: 0.2;
+    z-index: 1;
+}
+
+@keyframes scanMove {
+    from { background-position: 0 0; }
+    to { background-position: 0 100%; }
+}
+
+/* ─── CONTAINER ───────────────────────────── */
+.contact-container {
+    width: 100%;
+    max-width: 600px;
+    background: rgba(10, 10, 40, 0.85);
+    padding: 2.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--primary-neon);
+    box-shadow: 0 0 20px var(--primary-neon);
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* ─── HEADERS ───────────────────────────── */
+.contact-title {
+    font-family: var(--font-primary);
+    color: var(--primary-neon);
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px var(--primary-neon);
+}
+
+.contact-subtitle {
+    font-family: var(--font-secondary);
+    color: var(--font-color);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    opacity: 0.8;
+}
+
+/* ─── FORM ───────────────────────────── */
+.contact-form {
+    display: flex;
     flex-direction: column;
-    align-items: center; /* Center when stacked */
-    gap: 20px; /* optional spacing between boxes */
-  }
-
-  .box {
-    width: 90%;        /* same width for all */
-    max-width: 350px;  /* optional max limit */
-    height: 200px;     /* force same height */
-  }
+    gap: 1.5rem;
+    position: relative;
 }
 
-.container > .pfp {
-    width: 20px;
+.form-group {
+    text-align: left;
+    position: relative;
 }
+
+.form-group label {
+    display: block;
+    font-family: var(--font-primary);
+    font-size: 0.9rem;
+    color: var(--accent-neon);
+    margin-bottom: 0.4rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Input styling */
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: rgba(0, 0, 40, 0.85);
+    border: 1px solid var(--primary-neon);
+    border-radius: 6px;
+    color: var(--font-color);
+    font-family: var(--font-secondary);
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
+
+/* ─── NEON FRAME FOCUS EFFECT ─────────────── */
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--secondary-neon);
+    box-shadow: 0 0 15px var(--secondary-neon),
+                0 0 25px var(--secondary-neon),
+                inset 0 0 10px var(--primary-neon);
+    animation: neonPulse 2s infinite;
+}
+
+@keyframes neonPulse {
+    0%, 100% {
+        box-shadow: 0 0 15px var(--secondary-neon),
+                    0 0 25px var(--secondary-neon),
+                    inset 0 0 10px var(--primary-neon);
+    }
+    50% {
+        box-shadow: 0 0 25px var(--primary-neon),
+                    0 0 40px var(--secondary-neon),
+                    inset 0 0 20px var(--secondary-neon);
+    }
+}
+
+/* ─── SEND BUTTON ─────────────────────────── */
+.send-btn {
+    background: transparent;
+    border: 1px solid var(--primary-neon);
+    color: var(--primary-neon);
+    font-family: var(--font-primary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 0.9rem 2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px var(--primary-neon);
+}
+
+.send-btn:hover {
+    background: var(--primary-neon);
+    color: var(--dark-blue);
+    box-shadow: 0 0 15px var(--primary-neon), 0 0 25px var(--primary-neon);
+    transform: translateY(-2px);
+}
+
+/* ─── SUCCESS POPUP ───────────────────────── */
+.success-popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 20, 0.9);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    backdrop-filter: blur(5px);
+}
+
+.success-popup.active {
+    display: flex;
+}
+
+.popup-content {
+    background: rgba(10, 10, 40, 0.85);
+    border: 1px solid var(--primary-neon);
+    box-shadow: 0 0 20px var(--primary-neon);
+    border-radius: 10px;
+    padding: 2rem 3rem;
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+}
+
+.popup-content h2 {
+    font-family: var(--font-primary);
+    color: var(--primary-neon);
+    text-shadow: 0 0 10px var(--primary-neon);
+    margin-bottom: 1rem;
+}
+
+.popup-content p {
+    color: var(--font-color);
+    font-family: var(--font-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.popup-content button {
+    background: transparent;
+    border: 1px solid var(--primary-neon);
+    color: var(--primary-neon);
+    font-family: var(--font-primary);
+    text-transform: uppercase;
+    padding: 0.6rem 1.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.popup-content button:hover {
+    background: var(--primary-neon);
+    color: var(--dark-blue);
+    box-shadow: 0 0 15px var(--primary-neon);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* ─── RESPONSIVE ───────────────────────────── */
+@media (max-width: 600px) {
+    .contact-container {
+        padding: 1.5rem;
+        max-width: 90%;
+    }
+
+    .contact-title {
+        font-size: 1.8rem;
+    }
+
+    .popup-content {
+        padding: 1.5rem;
+    }
+}
+
+
+.btn {
+    display: inline-block;
+    padding: 15px 40px;
+    background: transparent;
+    color: var(--primary-neon);
+    text-decoration: none;
+    font-family: var(--font-primary);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    border: 2px solid var(--primary-neon);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+    text-shadow: 0 0 5px var(--primary-neon);
+}
+.btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 255, 255, 0.2);
+    transition: all 0.5s ease;
+}
+.btn:hover::before { left: 100%;
+.btn:hover {
+    background: rgba(0, 255, 255, 0.1);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+    transform: translateY(-5px);
+    text-shadow: 0 0 10px var(--primary-neon);
+}}
